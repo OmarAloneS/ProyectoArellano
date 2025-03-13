@@ -1,0 +1,27 @@
+
+#container {
+    overflow: auto;
+    max-height: 75vh;
+    padding: 16px;
+  }
+  
+  ion-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  ion-card {
+    margin-top: 10px;
+    background-color: rgb(72, 174, 174);
+    color: black;
+  }
+  
+  ion-button {
+    margin-top: 10px;
+    
+  }
+  ion-button:hover {
+    background-color: #4a31a4; /* Colores más oscuros para el hover */
+  }
+  

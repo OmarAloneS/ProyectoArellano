@@ -1,0 +1,87 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Sistema 2x2</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Sistema 2x2</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <!-- Primer Sistema de Ecuaciones -->
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-input [(ngModel)]="a11" type="number" placeholder="a11"></ion-input></ion-col>
+        <ion-col>x +</ion-col>
+        <ion-col><ion-input [(ngModel)]="a12" type="number" placeholder="a12"></ion-input></ion-col>
+        <ion-col>y =</ion-col>
+        <ion-col><ion-input [(ngModel)]="b1" type="number" placeholder="b1"></ion-input></ion-col>
+      </ion-row>
+    </ion-grid>
+    
+    <!-- Segundo Sistema de Ecuaciones -->
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-input [(ngModel)]="a21" type="number" placeholder="a21"></ion-input></ion-col>
+        <ion-col>x +</ion-col>
+        <ion-col><ion-input [(ngModel)]="a22" type="number" placeholder="a22"></ion-input></ion-col>
+        <ion-col>y =</ion-col>
+        <ion-col><ion-input [(ngModel)]="b2" type="number" placeholder="b2"></ion-input></ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <strong>
+      <p>
+        El sistema de ecuaciones a resolver es:
+        <br>{{a11}}x + {{a12}}y = {{b1}}
+        <br>{{a21}}x + {{a22}}y = {{b2}}
+      </p>
+    </strong>
+
+    <!-- Botón para Calcular -->
+    <ion-button expand="full" (click)="resolverSistema()">Calcular</ion-button>
+
+    <!-- Input para Tolerancia -->
+    <ion-item>
+      <ion-label position="floating">Tolerancia:</ion-label>
+      <ion-input type="number" [(ngModel)]="tolerance"></ion-input>
+    </ion-item>
+
+    <p>Ingrese la tolerancia: {{ tolerance }}</p>
+
+    <!-- Resultados -->
+    <ion-card *ngIf="results.length > 0">
+      <ion-card-header>
+        <ion-card-title>Resultados</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>Iteración</ion-col>
+            <ion-col>x</ion-col>
+            <ion-col>y</ion-col>
+            <ion-col>xtotal</ion-col>
+            <ion-col>ytotal</ion-col>
+          </ion-row>
+          <ion-row *ngFor="let result of results">
+            <ion-col>{{ result.iter }}</ion-col>
+            <ion-col>{{ result.x }}</ion-col>
+            <ion-col>{{ result.y }}</ion-col>
+            <ion-col>{{ result.xtotal }}</ion-col>
+            <ion-col>{{ result.ytotal }}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+<!-- Footer con botones de navegación -->
+<ion-footer>
+      <ion-button (click)="goToHome()">Ir a Home</ion-button>
+      <ion-button (click)="goTosistema3x3()">Ir al Sistema 3x3</ion-button>
+</ion-footer>

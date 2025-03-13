@@ -1,0 +1,104 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Sistema 3x3</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Sistema 3x3</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-input [(ngModel)]="b11" type="number" placeholder="b11"></ion-input></ion-col>
+        <ion-col>x +</ion-col>
+        <ion-col><ion-input [(ngModel)]="b12" type="number" placeholder="b12"></ion-input></ion-col>
+        <ion-col>y +</ion-col>
+        <ion-col><ion-input [(ngModel)]="b13" type="number" placeholder="b13"></ion-input></ion-col>
+        <ion-col>z =</ion-col>
+        <ion-col><ion-input [(ngModel)]="c1" type="number" placeholder="c1"></ion-input></ion-col>
+      </ion-row>
+    </ion-grid>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-input [(ngModel)]="b21" type="number" placeholder="b21"></ion-input></ion-col>
+        <ion-col>x +</ion-col>
+        <ion-col><ion-input [(ngModel)]="b22" type="number" placeholder="b22"></ion-input></ion-col>
+        <ion-col>y +</ion-col>
+        <ion-col><ion-input [(ngModel)]="b23" type="number" placeholder="b23"></ion-input></ion-col>
+        <ion-col>z =</ion-col>
+        <ion-col><ion-input [(ngModel)]="c2" type="number" placeholder="c2"></ion-input></ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-input [(ngModel)]="b31" type="number" placeholder="b31"></ion-input></ion-col>
+        <ion-col>x +</ion-col>
+        <ion-col><ion-input [(ngModel)]="b32" type="number" placeholder="b32"></ion-input></ion-col>
+        <ion-col>y +</ion-col>
+        <ion-col><ion-input [(ngModel)]="b33" type="number" placeholder="b33"></ion-input></ion-col>
+        <ion-col>z =</ion-col>
+        <ion-col><ion-input [(ngModel)]="c3" type="number" placeholder="c3"></ion-input></ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <strong>
+      <p>
+        El sistema de ecuaciones a resolver es:
+        <br>{{b11}}x + {{b12}}y + {{b13}}z = {{c1}}
+        <br>{{b21}}x + {{b22}}y + {{b23}}z = {{c2}}
+        <br>{{b31}}x + {{b32}}y + {{b33}}z = {{c3}}
+      </p>
+    </strong>
+
+    <ion-button expand="full" (click)="resolverSistema3por3()">Calcular 3x3</ion-button>
+
+    <ion-item>
+      <ion-label position="floating">Tolerancia:</ion-label>
+      <ion-input type="number" [(ngModel)]="tolerance"></ion-input>
+    </ion-item>
+
+    <p>Ingrese la tolerancia: {{tolerance}}</p>
+
+    <!-- Resultados -->
+    <ion-card *ngIf="results.length > 0" >
+      <ion-card-header >
+        <ion-card-title >Resultados</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>Iteración</ion-col>
+            <ion-col>x</ion-col>
+            <ion-col>y</ion-col>
+            <ion-col>z</ion-col>
+            <ion-col>xtotal</ion-col>
+            <ion-col>ytotal</ion-col>
+            <ion-col>ztotal</ion-col>
+          </ion-row>
+          <ion-row *ngFor="let result of results">
+            <ion-col>{{ result.iter }}</ion-col>
+            <ion-col>{{ result.x }}</ion-col>
+            <ion-col>{{ result.y }}</ion-col>
+            <ion-col>{{ result.z }}</ion-col>
+            <ion-col>{{ result.xtotal }}</ion-col>
+            <ion-col>{{ result.ytotal }}</ion-col>
+            <ion-col>{{ result.ztotal }}</ion-col>
+          </ion-row>
+          
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-footer>
+        <ion-button (click)="goToHome()">Ir a home</ion-button>
+        <ion-button (click)="goTosistema2x2()">Ir al sistema 2x2</ion-button>
+  </ion-footer>
+</ion-content>
